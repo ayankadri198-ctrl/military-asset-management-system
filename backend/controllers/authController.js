@@ -45,7 +45,7 @@ async function login(req, res) {
 
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      await logActivity(user.id, user.username, 'FAILED_LOGIN_ATTEMPT', 'Authentication', `Invalid password attempted for ${email}`, req.ip);
+      await logActivity(user.id, user.username, 'FAILED_LOGIN_ATTEMPT', 'Authentication', `Invalid password attempted for ${user.email || identifier}`, req.ip);
       return res.status(401).json({
         success: false,
         message: 'Invalid credentials. Access Denied.'
