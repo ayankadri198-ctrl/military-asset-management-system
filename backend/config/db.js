@@ -27,11 +27,26 @@ const DB_MODE = (process.env.DB_MODE || 'auto').toLowerCase();
  * Initialize SQLite fallback instance
  */
 function initSqlite() {
-  const dbDir = path.resolve(__dirname, '../../database');
-  if (!fs.existsSync(dbDir)) {
-    fs.mkdirSync(dbDir, { recursive: true });
+  const possibleDirs = [
+    process.env.DB_DIR,
+    path.resolve(__dirname, '../../database'),
+    path.resolve(__dirname, '../database'),
+    path.resolve(process.cwd(), 'database'),
+    path.resolve(process.cwd(), '../database')
+  ].filter(Boolean);
+
+  let dbDir = possibleDirs.find(d => fs.existsSync(d));
+  if (!dbDir) {
+    dbDir = path.resolve(__dirname, '../../database');
+    try {
+      fs.mkdirSync(dbDir, { recursive: true });
+    } catch {
+      dbDir = path.resolve(__dirname, '../database');
+      fs.mkdirSync(dbDir, { recursive: true });
+    }
   }
-  const dbPath = path.join(dbDir, 'military_assets.sqlite');
+
+  const dbPath = process.env.DB_PATH || path.join(dbDir, 'military_assets.sqlite');
   sqliteDb = new Database(dbPath);
   sqliteDb.pragma('journal_mode = WAL');
   sqliteDb.pragma('foreign_keys = ON');
