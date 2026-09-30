@@ -1,8 +1,9 @@
 services:
   - type: web
     name: mams-defense-backend
-    env: node
+    runtime: node
     plan: free
+    region: oregon
     rootDir: backend
     buildCommand: npm install
     startCommand: npm start
