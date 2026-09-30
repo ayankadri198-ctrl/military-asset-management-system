@@ -29,8 +29,8 @@ const DB_MODE = (process.env.DB_MODE || 'auto').toLowerCase();
 function initSqlite() {
   const possibleDirs = [
     process.env.DB_DIR,
-    path.resolve(__dirname, '../../database'),
     path.resolve(__dirname, '../database'),
+    path.resolve(__dirname, '../../database'),
     path.resolve(process.cwd(), 'database'),
     path.resolve(process.cwd(), '../database')
   ].filter(Boolean);
