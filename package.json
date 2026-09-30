@@ -1,0 +1,14 @@
+{
+  "name": "military-asset-management-system",
+  "version": "1.0.0",
+  "description": "Full-stack Military Asset Management System (React + Express + MySQL)",
+  "scripts": {
+    "install:all": "npm install && cd backend && npm install && cd ../frontend && npm install",
+    "backend": "cd backend && npm start",
+    "frontend": "cd frontend && npm run dev",
+    "dev": "concurrently \"npm run backend\" \"npm run frontend\""
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}

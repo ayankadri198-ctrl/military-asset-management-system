@@ -1,0 +1,10 @@
+const express = require('express');
+const router = express.Router();
+const transferController = require('../controllers/transferController');
+const { authenticate, authorize } = require('../middleware/auth');
+
+router.get('/', authenticate, transferController.getTransfers);
+router.post('/', authenticate, authorize('Admin', 'Manager', 'Staff'), transferController.createTransfer);
+router.put('/:id/status', authenticate, authorize('Admin', 'Manager'), transferController.updateTransferStatus);
+
+module.exports = router;

@@ -1,0 +1,44 @@
+# Dependencies
+node_modules/
+*/node_modules/
+
+# Environment Variables & Secrets
+.env
+.env.local
+.env.*.local
+*.env
+backend/.env
+!backend/.env.example
+frontend/.env
+!frontend/.env.example
+
+# Production & Build outputs
+dist/
+*/dist/
+build/
+*/build/
+
+# Operating System & IDE Files
+.DS_Store
+*/.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# SQLite WAL and Temporary Files (Preserve main .sqlite file)
+*.sqlite-journal
+*.sqlite-shm
+*.sqlite-wal
+
+# Archives
+military-asset-management-system.zip
+*.zip
+*.tar.gz
+*.rar
