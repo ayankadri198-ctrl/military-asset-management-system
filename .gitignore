@@ -42,3 +42,5 @@ military-asset-management-system.zip
 *.zip
 *.tar.gz
 *.rar
+.vercel
+.env*
